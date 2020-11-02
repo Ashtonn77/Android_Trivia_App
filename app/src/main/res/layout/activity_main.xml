@@ -5,8 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/light_turquoise"
-    tools:context=".MainActivity"
-    >
+    tools:context=".MainActivity">
 
     <TextView
         android:id="@+id/textView"
@@ -25,9 +24,8 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
-        android:layout_width="375dp"
+        android:layout_width="289dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
         android:layout_marginTop="88dp"
         app:cardCornerRadius="4dp"
         app:cardElevation="7dp"
@@ -35,16 +33,20 @@
         app:contentPaddingLeft="20dp"
         app:contentPaddingRight="20dp"
         app:contentPaddingTop="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        android:foregroundGravity="center_vertical"
         app:layout_constraintTop_toBottomOf="@+id/textView">
 
         <TextView
             android:id="@+id/question_text_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:paddingBottom="10dp"
+            android:paddingTop="10dp"
             android:text="@string/inner_text"
-            android:textColor="@color/black"
             android:textAlignment="center"
+            android:textColor="@color/black"
             android:textSize="16sp"
 
             />
@@ -54,15 +56,13 @@
         android:id="@+id/true_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="10dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="12dp"
         android:backgroundTint="@color/turquoise"
         android:fontFamily="@font/marcellus"
         android:text="@string/true_btn"
         android:textColor="@color/bottle_green"
         android:textStyle="bold"
-        app:layout_constraintEnd_toStartOf="@+id/false_button"
-        app:layout_constraintHorizontal_bias="0.773"
         app:layout_constraintStart_toEndOf="@+id/prev_button"
         app:layout_constraintTop_toBottomOf="@+id/cardView" />
 
@@ -70,14 +70,16 @@
         android:id="@+id/false_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="44dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="12dp"
         android:backgroundTint="@color/turquoise"
         android:fontFamily="@font/marcellus"
         android:text="@string/false_btn"
-        android:textStyle="bold"
         android:textColor="@color/bottle_green"
+        android:textStyle="bold"
         app:layout_constraintEnd_toStartOf="@+id/next_button"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/true_button"
         app:layout_constraintTop_toBottomOf="@+id/cardView" />
 
     <ImageButton
@@ -88,6 +90,8 @@
         android:layout_marginTop="20dp"
         android:background="@color/bottle_green"
         android:contentDescription="@string/string_previous_button"
+        app:layout_constraintEnd_toStartOf="@+id/next_button"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cardView"
         app:srcCompat="@android:drawable/ic_media_previous" />
@@ -97,7 +101,7 @@
         android:layout_width="46dp"
         android:layout_height="41dp"
         android:layout_marginTop="20dp"
-        android:layout_marginEnd="24dp"
+        android:layout_marginEnd="32dp"
         android:background="@color/bottle_green"
         android:contentDescription="@string/next_button"
         app:layout_constraintEnd_toEndOf="parent"
