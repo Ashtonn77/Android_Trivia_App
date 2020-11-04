@@ -12,4 +12,8 @@
     <string name="correct_answer">Correct!</string>
     <string name="incorrect_answer">Incorrect!</string>
     <string name="inner_text" />
+    <string name="high_score">High Score:</string>
+    <string name="high_score_value">0</string>
+    <string name="current_score">Current Score:</string>
+    <string name="current_score_value">0</string>
 </resources>
