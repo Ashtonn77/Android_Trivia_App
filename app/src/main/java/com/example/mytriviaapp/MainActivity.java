@@ -21,6 +21,7 @@ import android.widget.Toast;
 import com.example.mytriviaapp.data.AnswerListAsyncResponse;
 import com.example.mytriviaapp.data.QuestionBank;
 import com.example.mytriviaapp.model.Question;
+import com.example.mytriviaapp.utils.Prefs;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -44,6 +45,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private TextView highScore;
     private TextView currentScore;
 
+
+    Prefs prefs;
+
     List<Question> questionList;
 
     @Override
@@ -62,6 +66,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         highScore = findViewById(R.id.high_score_value);
         currentScore = findViewById(R.id.current_score_value);
 
+        prefs = new Prefs(MainActivity.this);
 
         nextButton.setOnClickListener(this);
         prevButton.setOnClickListener(this);
@@ -79,8 +84,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         });
 
-        getScore();
-        high_score = Integer.parseInt((String) highScore.getText());
+        highScore.setText(Integer.toString(prefs.getHighScore()));
+
     }
 
     @Override
@@ -136,7 +141,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         {
             fadeView();
             updateScore(true);
-            saveScore(score, high_score);
+           // prefs.saveHighScore(score);
             scaleView();
             go_to_next_question();
             toastMsgId = R.string.correct_answer;
@@ -145,7 +150,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         else {
             shakeAnimation();
             updateScore(false);
-            saveScore(score, high_score);
             go_to_next_question();
             toastMsgId = R.string.incorrect_answer;
         }
@@ -236,27 +240,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
        score = answer ? score + 10 : score - 5;
         score = (score <= 0) ? 0 : score;
        currentScore.setText(Integer.toString(score));
-    }
-    
-    void saveScore(int score, int high_score)
-    {
-        SharedPreferences sharedPreferences = getSharedPreferences(MESSAGE_ID, MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
 
-        score = score > high_score ? score  : high_score;
-
-        editor.putInt("score", score);
-        editor.apply();
+       if(score > prefs.getHighScore()){
+           highScore.setText(Integer.toString(score));
+       }
 
     }
 
-    void getScore()
-    {
-        SharedPreferences getSharedPreferences = getSharedPreferences(MESSAGE_ID, MODE_PRIVATE);
-        int value = getSharedPreferences.getInt("score", 0);
-
-        highScore.setText(Integer.toString(value));
-
+    @Override
+    protected void onPause() {
+        prefs.saveHighScore(score);
+        super.onPause();
     }
-
 }

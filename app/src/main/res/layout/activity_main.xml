@@ -37,7 +37,7 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="88dp"
+        android:layout_marginTop="48dp"
         android:fontFamily="@font/marcellus"
         android:letterSpacing="0.2"
         android:text="@string/title"
